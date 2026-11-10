@@ -1,0 +1,228 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --Gray-50: hsl(0, 0%, 98%);
+    --Gray-500: hsl(0, 0%, 41%);
+    --Gray-950: hsl(0, 0%, 8%);
+}
+body{
+    font-family: "Epilogue", sans-serif;
+    background: var(--Gray-50);
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 50px;
+    padding: 20px;
+}
+.primary-nav{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav-links{
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+}
+.nav-item{
+    position: relative;
+}
+.nav-links a, .dropdown-toggle{
+    color: var(--Gray-500);
+    text-decoration: none;
+    font: inherit;
+}
+.dropdown-toggle{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+.dropdown-menu{
+    position: absolute;
+    z-index: 1;
+    min-width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px;
+    list-style: none;
+    background: white;
+    border-radius: 10px;
+}
+.dropdown-menu[hidden]{
+    display: none;
+}
+.dropdown-menu a{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.box{
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+.menu-toggle{
+    display: none;
+}
+header a{
+    text-decoration: none;
+    color: var(--Gray-500);
+}
+.logo{
+    background:var(--Gray-50);
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.hero{
+    padding: 90px;
+    display: flex;
+    height: 80vh;
+}
+.hero-text{
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    width: 50%;
+}
+.hero-text h1{
+    font-size: 60px;
+    width: 60%;
+    line-height: 1.1;
+}
+.hero-text p{
+    width: 50%;
+    text-align: left;
+    font-size: 20px;
+    color: var(--Gray-500);
+}
+  .hero-text .btn{
+    width: fit-content;
+    background: black;
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 15px;
+    
+}
+.hero-image{
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    justify-content: flex-start;
+}
+.hero-pic{
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.picture-image{
+    width: 100%;
+    height: 100%;
+}
+.hero-pic .picture-image{
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+}
+@media screen and (max-width: 768px){
+    header{
+        justify-content: space-between;
+        position: relative;
+    }
+    .menu-toggle{
+        display: block;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        z-index: 2;
+    }
+    .primary-nav{
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        z-index: 1;
+        width: min(250px, 85vw);
+        align-items: stretch;
+        flex-direction: column;
+        gap: 28px;
+        padding: 24px;
+        background: white;
+        box-shadow: 0 10px 30px rgb(0 0 0 / 15%);
+    }
+    header.menu-open .primary-nav{
+        display: flex;
+    }
+    .nav-links{
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 22px;
+    }
+    .dropdown-menu{
+        position: static;
+        gap: 18px;
+        padding: 18px 0 0 20px;
+        box-shadow: none;
+    }
+    .box{
+        justify-content: center;
+        flex-direction: column;
+        gap: 18px;
+    }
+    .primary-nav a{
+        display: block;
+    }
+    .box .logo {
+           display:none;
+    }
+       .hero{
+        flex-direction: column-reverse;
+        padding: 20px;
+        height: auto;
+    }
+    .hero-image{
+        padding: 20px;
+        justify-content: center;
+    }
+    .hero-text{
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+    }
+    .hero-text h1{
+        width: 100%;
+        font-size: 30px;
+        line-height: 1.2;
+        text-align: center;
+    }
+    .hero-text p{
+        width: 100%;
+        font-size: 16px;
+        line-height: 1.5;
+        text-align: center;
+    }
+    .hero-text .btn{
+        padding: 15px;
+        display: block;
+        align-self: center;
+    }
+}

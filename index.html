@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+  <title>Frontend Mentor | Intro section with dropdown navigation</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <!-- <style>
+    .attribution { font-size: 0.6875rem; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style> -->
+</head>
+
+<body>
+  <header>
+    <h1>snap</h1>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"
+      aria-controls="primary-nav">
+      <img src="./images/icon-menu.svg" alt="">
+    </button>
+    <nav class="primary-nav" id="primary-nav">
+      <ul class="nav-links">
+        <li class="nav-item">
+          <button class="dropdown-toggle" type="button" aria-expanded="false" aria-controls="features-menu">
+            Features <img src="./images/icon-arrow-down.svg" alt="" class="arrow">
+          </button>
+          <ul class="dropdown-menu" id="features-menu" hidden>
+            <li><a href="#"><img src="./images/icon-todo.svg" alt="">Todo List</a></li>
+            <li><a href="#"><img src="./images/icon-calendar.svg" alt="">Calendar</a></li>
+            <li><a href="#"><img src="./images/icon-reminders.svg" alt="">Reminders</a></li>
+            <li><a href="#"><img src="./images/icon-planning.svg" alt="">Planning</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <button class="dropdown-toggle">
+            Company <img src="./images/icon-arrow-down.svg" alt="" class="arrow">
+          </button>
+          <ul class="dropdown-menu" id="company-menu" hidden>
+            <li><a href="#">History</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <div class="box">
+        <a href="#">Login</a>
+        <a href="#" class="logo">Register</a>
+      </div>
+    </nav>
+  </header>
+<section id="hero" class="hero">
+
+  <div class="hero-text">
+    <h1>Make remote work</h1>
+    <p>Get your team in sync, no matter your location. Streamline processes, 
+  create team rituals, and watch productivity soar.</p>
+  <a href="/" class="btn">Learn More</a>
+   <div class="hero-image">
+    <img src="./images/client-databiz.svg" alt="databiz">
+    <img src="./images/client-audiophile.svg" alt="audiophile">
+    <img src="./images/client-meet.svg" alt="meet">
+    <img src="./images/client-maker.svg" alt="maker">
+  </div>
+  </div>
+
+  <div class="hero-pic"><img src="./images/image-hero-desktop.png" alt="hero" class="picture-image">
+  </div>
+</section>
+
+  <!-- Features
+  Company
+  Careers
+  About
+
+  Login
+  Register
+
+  Make remote work
+
+  Get your team in sync, no matter your location. Streamline processes, 
+  create team rituals, and watch productivity soar.
+
+  Learn more
+  
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </footer> -->
+  <script>
+    const header = document.querySelector("header");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const primaryNav = document.querySelector(".primary-nav");
+    const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+
+    menuToggle.addEventListener("click", () => {
+      const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", String(!isExpanded));
+      menuToggle.setAttribute("aria-label", isExpanded ? "Open navigation" : "Close navigation");
+      menuToggle.querySelector("img").src = isExpanded
+        ? "./images/icon-menu.svg"
+        : "./images/icon-close-menu.svg";
+      header.classList.toggle("menu-open", !isExpanded);
+    });
+
+    dropdownToggles.forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        const menu = document.getElementById(toggle.getAttribute("aria-controls"));
+        const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+
+        dropdownToggles.forEach((otherToggle) => {
+          const otherMenu = document.getElementById(otherToggle.getAttribute("aria-controls"));
+          otherToggle.setAttribute("aria-expanded", "false");
+          otherMenu.hidden = true;
+          otherToggle.querySelector(".arrow").src = "./images/icon-arrow-down.svg";
+        });
+
+        if (!isExpanded) {
+          toggle.setAttribute("aria-expanded", "true");
+          menu.hidden = false;
+          toggle.querySelector(".arrow").src = "./images/icon-arrow-up.svg";
+        }
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!primaryNav.contains(event.target) && !menuToggle.contains(event.target)) {
+        dropdownToggles.forEach((toggle) => {
+          const menu = document.getElementById(toggle.getAttribute("aria-controls"));
+          toggle.setAttribute("aria-expanded", "false");
+          menu.hidden = true;
+          toggle.querySelector(".arrow").src = "./images/icon-arrow-down.svg";
+        });
+      }
+    });
+  </script>
+</body>
+</html>
